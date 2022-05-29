@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_multithread/my_service.dart';
+import 'package:flutter_multithread/worker/my_service_worker_pool.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,13 +35,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Stopwatch? timer;
   void calculatePi() async {
+    if (digits <= 0) return;
     timer = Stopwatch()..start();
     setState(() {
       result = "";
       isLoading = true;
     });
 
-    result = await MyServiceImpl().computeHeavyMethod(digits);
+    result = await MyServiceWorkerPool().computeHeavyMethod(digits);
+
     setState(() {
       timer!.stop();
       isLoading = false;
@@ -96,9 +98,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Text(
                                 "Elapsed time (in ms): ${timer!.elapsedMilliseconds}"),
                           ),
-                        SingleChildScrollView(
-                          child: SelectableText(
-                            result.isEmpty ? '' : result,
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: SelectableText(
+                              result.isEmpty ? '' : result,
+                            ),
                           ),
                         ),
                       ],
@@ -108,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: digits > 0 ? calculatePi : null,
+        onPressed: calculatePi,
         tooltip: 'Calculates',
         child: const Text("Run"),
       ),

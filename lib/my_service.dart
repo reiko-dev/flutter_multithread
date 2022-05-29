@@ -1,15 +1,17 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
+import 'package:squadron/squadron.dart';
 
-abstract class MyService {
+abstract class MyService implements WorkerService {
+  static const operationCommand = 1;
+
   Future<String> computeHeavyMethod(int n);
 }
 
 class MyServiceImpl implements MyService {
   @override
   Future<String> computeHeavyMethod(int n) async {
-    return await compute(_heavyMethod, n);
+    return _heavyMethod(n);
   }
 
   ///returns [n] digits of `pi` as hexadecimal values.
@@ -78,4 +80,9 @@ class MyServiceImpl implements MyService {
     }
     return tempo;
   }
+
+  @override
+  late final Map<int, CommandHandler> operations = {
+    MyService.operationCommand: (r) => computeHeavyMethod(r.args[0]),
+  };
 }

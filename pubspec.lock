@@ -114,6 +114,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.0"
+  squadron:
+    dependency: "direct main"
+    description:
+      name: squadron
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   stack_trace:
     dependency: transitive
     description:
