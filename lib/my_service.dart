@@ -2,8 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
-class MyServices {
-  static Future<String> computeHeavyMethod(int n) async {
+abstract class MyService {
+  Future<String> computeHeavyMethod(int n);
+}
+
+class MyServiceImpl implements MyService {
+  @override
+  Future<String> computeHeavyMethod(int n) async {
     return await compute(_heavyMethod, n);
   }
 

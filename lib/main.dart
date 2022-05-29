@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_multithread/pi_digits_service.dart';
+import 'package:flutter_multithread/my_service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       isLoading = true;
     });
 
-    result = await MyServices.computeHeavyMethod(digits);
+    result = await MyServiceImpl().computeHeavyMethod(digits);
     setState(() {
       timer!.stop();
       isLoading = false;
