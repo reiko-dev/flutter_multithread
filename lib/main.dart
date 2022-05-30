@@ -34,7 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isLoading = false;
 
   Stopwatch? timer;
+
   void calculatePi() async {
+    if (digits <= 0) return;
     timer = Stopwatch()..start();
     setState(() {
       result = "";
@@ -69,9 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       onChanged: (val) {
                         if (int.tryParse(val) != null) {
-                          setState(() {
-                            digits = int.parse(val);
-                          });
+                          digits = int.parse(val);
                         }
                       },
                     ),
@@ -96,9 +96,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Text(
                                 "Elapsed time (in ms): ${timer!.elapsedMilliseconds}"),
                           ),
-                        SingleChildScrollView(
-                          child: SelectableText(
-                            result.isEmpty ? '' : result,
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: SelectableText(
+                              result.isEmpty ? '' : result,
+                            ),
                           ),
                         ),
                       ],
@@ -108,8 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: digits > 0 ? calculatePi : null,
-        tooltip: 'Calculates',
+        onPressed: calculatePi,
+        tooltip: 'Calculate',
         child: const Text("Run"),
       ),
     );
