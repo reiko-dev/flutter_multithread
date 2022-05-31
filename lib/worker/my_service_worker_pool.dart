@@ -9,6 +9,7 @@ import 'package:squadron/squadron.dart';
 import 'my_service_worker_activator.dart' //stub file implementation
     if (dart.library.js) 'package:flutter_multithread/worker/browser/my_service_worker_activator.dart'
     if (dart.library.html) 'package:flutter_multithread/worker/browser/my_service_worker_activator.dart'
+    //No vídeo o import do worker para a vm estava ligeiramente errado
     if (dart.library.io) 'package:flutter_multithread/worker/vm/my_service_worker_activator.dart';
 
 class MyServiceWorkerPool extends WorkerPool<MyServiceWorker>

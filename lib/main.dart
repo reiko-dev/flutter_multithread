@@ -71,9 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       onChanged: (val) {
                         if (int.tryParse(val) != null) {
-                          setState(() {
-                            digits = int.parse(val);
-                          });
+                          digits = int.parse(val);
                         }
                       },
                     ),

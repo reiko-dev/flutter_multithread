@@ -30,8 +30,8 @@ _**Squadron package:**_
 
 _**Dart to Javascript:**_
 
-8. _ttps://dart.dev/tools/dart-compile_
-9. _ttps://dart.dev/tools/dart2js#options_
+8. _https://dart.dev/tools/dart-compile_
+9. _https://dart.dev/tools/dart2js#options_
 
 _**Conditional Importing:**_
 
